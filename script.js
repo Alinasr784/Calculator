@@ -25,8 +25,9 @@ let C = document.querySelector(".C");
 let CE = document.querySelector(".CE");
 let result = document.querySelector(".num-output");
 let history = document.querySelector(".num-input");
+let deletedata = document.querySelector(".deleteData");
 
-let historyScreen = document.getElementById("history-screen"); 
+let historyScreen = document.getElementById("history-screen");
 let historyContent = document.getElementById("history-content");
 let historyArray = [];
 let historyIndex = 0;
@@ -52,12 +53,12 @@ buttons.forEach(button => {
         history.innerText = result.value;
         try {
           historyArray.push({
-            calculation : result.value,
-            result : eval(result.value)
+            calculation: result.value,
+            result: eval(result.value)
           });
-          localStorage.setItem(history, JSON.stringify(historyArray))
+          localStorage.setItem('history', JSON.stringify(historyArray));
           result.value = eval(result.value);
-          
+
         } catch {
           result.value = 'Error';
         }
@@ -112,11 +113,7 @@ darkmodeToggle.onclick = () => {
   }
 };
 
-
-
-// مثال على historyArray الذي يحتوي على الحسابات والنتائج
-
-
+// عرض شاشة التاريخ عند النقر على الزر
 history.onclick = () => {
   if (historyScreen.classList.contains('show')) {
     historyScreen.classList.remove('show');
@@ -136,29 +133,15 @@ history.onclick = () => {
       breakLine.style.cssText = `color:black; height: 5px;`;
       historyContent.appendChild(breakLine);
 
-      let deletedata = document.createElement("div");
-      deletedata.innerText = "Delete";
-      deletedata.onclick = () => {
-        localStorage.clear()
-        historyArray = [];
-        historyContent.innerHTML = "";
-        historyScreen.classList.remove('show');
-        historyScreen.classList.add('hiden');
-        
-      }
-      deletedata.style.cssText = `
-      margin-top :15px;
-      width : 100%;
-      text-align: center;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color : red;
-      `
-      historyScreen.appendChild(deletedata)
       historyContent.appendChild(calcDiv);
       historyContent.appendChild(resultDiv);
     });
+
+    // عرض زر الحذف إذا كانت هناك عناصر في التاريخ
+    if (historyArray.length > 0) {
+      deletedata.classList.remove("hide");
+    }
+
     historyScreen.classList.remove('hiden');
     historyScreen.classList.add('show');
   }
@@ -172,10 +155,30 @@ document.addEventListener('click', function(event) {
   }
 });
 
-window.onload = () =>{
-  if(localStorage.getItem(history)){
-    historyArray = JSON.parse(localStorage.getItem(history));
-    history.innerText = historyArray[historyArray.length -1].calculation;
-    result.value = historyArray[historyArray.length -1].result;
+// حذف بيانات التاريخ
+deletedata.onclick = () => {
+  if (historyArray.length > 0) {
+    localStorage.clear();
+    historyArray = [];
+    historyContent.innerHTML = "";
+    historyScreen.classList.remove('show');
+    historyScreen.classList.add('hiden');
+    deletedata.classList.add("hide");
+  } else {
+    deletedata.classList.add("hide");
   }
-}
+};
+
+// استعادة التاريخ من التخزين المحلي عند تحميل الصفحة
+window.onload = () => {
+  if (localStorage.getItem('history')) {
+    historyArray = JSON.parse(localStorage.getItem('history'));
+    history.innerText = historyArray[historyArray.length - 1].calculation;
+    result.value = historyArray[historyArray.length - 1].result;
+
+    // عرض زر الحذف إذا كانت هناك عناصر في التاريخ
+    if (historyArray.length > 0) {
+      deletedata.classList.remove("hide");
+    }
+  }
+};
