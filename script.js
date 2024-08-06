@@ -131,10 +131,11 @@ history.onclick = () => {
 
       let breakLine = document.createElement("hr");
       breakLine.style.cssText = `color:black; height: 5px;`;
-      historyContent.appendChild(breakLine);
 
       historyContent.appendChild(calcDiv);
       historyContent.appendChild(resultDiv);
+      historyContent.appendChild(breakLine);
+      historyScreen.appendChild(historyContent)
     });
 
     // عرض زر الحذف إذا كانت هناك عناصر في التاريخ
@@ -157,16 +158,18 @@ document.addEventListener('click', function(event) {
 
 // حذف بيانات التاريخ
 deletedata.onclick = () => {
-  if (historyArray.length > 0) {
-    localStorage.clear();
-    historyArray = [];
-    historyContent.innerHTML = "";
-    historyScreen.classList.remove('show');
-    historyScreen.classList.add('hiden');
-    deletedata.classList.add("hide");
-  } else {
-    deletedata.classList.add("hide");
-  }
+  setTimeout(() => {
+    if (historyArray.length > 0) {
+      localStorage.clear();
+      historyArray = [];
+      historyContent.innerHTML = "";
+      historyScreen.classList.remove('show');
+      historyScreen.classList.add('hiden');
+      deletedata.classList.add("hide");
+    } else {
+      deletedata.classList.add("hide");
+    }
+  },3800 );
 };
 
 // استعادة التاريخ من التخزين المحلي عند تحميل الصفحة
@@ -182,3 +185,19 @@ window.onload = () => {
     }
   }
 };
+
+
+
+
+
+
+
+
+
+document.querySelectorAll('.button').forEach(button => button.addEventListener('click', e => {
+  if (!button.classList.contains('delete')) {
+    button.classList.add('delete');
+    setTimeout(() => button.classList.remove('delete'), 3200);
+  }
+  e.preventDefault();
+}));
