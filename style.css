@@ -2,46 +2,57 @@ html {
   height: 100%;
   width: 100%;
 }
-.loading{
-  width :100vw;
-  height : 100vh;
-  .dark-light{
+
+.loading {
+  width: 100vw;
+  height: 100vh;
+
+  .dark-light {
     width: 100%;
-    height : 207px;
+    height: 207px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: -60px;
   }
 }
-.content{
-  margin-top:-10px;
+
+.content {
+  margin-top: -10px;
 }
-.num-input{
-  width : 90%;
-  height : 20%;
-  color : #999;
-  text-align : right;
-  padding : 0.5rem;
+
+.num-input {
+  width: 90%;
+  height: 20%;
+  color: #999;
+  text-align: right;
+  padding: 0.5rem;
   font-size: 24px;
   margin: auto;
 }
-.num-output:hover , .num-input:hover , .num-output:focus , .num-input:focus{
+
+.num-output:hover,
+.num-input:hover,
+.num-output:focus,
+.num-input:focus {
   outline: none;
 }
-.num-output{
-  border:none;
-  height:86px;
+
+.num-output {
+  border: none;
+  height: 86px;
   width: 90%;
   font-size: 68px;
   text-align: right;
   margin: auto;
   background: none;
 }
-.row{
-  margin-top:8px ;
+
+.row {
+  margin-top: 8px;
 }
-.but{
+
+.but {
   width: 71.75px;
   height: 72px;
   font-size: 26px;
@@ -56,28 +67,35 @@ html {
   font-weight: bold;
   border-radius: 24px;
 }
-.but:hover{
+
+.but:hover {
   animation-name: but;
   animation-duration: 0.5s;
 }
-.gray{
+
+.gray {
   background: #4E505F;
 }
-.blue{
+
+.blue {
   background: #4B5FFC;
 }
-.dark{
+
+.dark {
   background: #2E2F38;
 }
-@keyframes but{
-  0%{
+
+@keyframes but {
+  0% {
     border-radius: 24px;
   }
-  50%{
-     border-radius: 5px;
+
+  50% {
+    border-radius: 5px;
   }
-  100%{
-     border-radius: 24px;
+
+  100% {
+    border-radius: 24px;
   }
 }
 
@@ -91,6 +109,7 @@ label {
   border-radius: 32px;
   cursor: pointer;
 }
+
 label:after {
   content: "";
   width: 24px;
@@ -103,22 +122,27 @@ label:after {
   transition: 0.3s;
   z-index: 200;
 }
+
 #darkmode-toggle {
   width: 0;
   height: 0;
   visibility: hidden;
 }
-#darkmode-toggle:checked + label {
+
+#darkmode-toggle:checked+label {
   background: #242424;
 }
-#darkmode-toggle:checked + label:after {
+
+#darkmode-toggle:checked+label:after {
   left: 44px;
   transform: translateX(-7%);
   background: linear-gradient(180deg, #777, #3a3a3a);
 }
+
 label:active:after {
   width: 32px;
 }
+
 label img {
   position: absolute;
   width: 18px;
@@ -126,18 +150,22 @@ label img {
   z-index: 100;
   transition: 0.3s;
 }
+
 label img.sun {
   left: 8px;
   fill: #fff;
 }
+
 label img.moon {
   left: 46px;
   fill: #7e7e7e;
 }
-#darkmode-toggle:checked + label img.sun {
+
+#darkmode-toggle:checked+label img.sun {
   fill: #7e7e7e;
 }
-#darkmode-toggle:checked + label img.moon {
+
+#darkmode-toggle:checked+label img.moon {
   fill: #fff;
 }
 
@@ -145,40 +173,58 @@ label img.moon {
 
 .history-screen {
   position: fixed;
-  min-height : 200px;
-  max-height : 50%;
+  min-height: 200px;
+  max-height: 50%;
   top: -100%;
   left: 0;
   width: 100%;
-  background: #c9c9c9  ;
+  background: #c9c9c9;
   z-index: 999;
-  border-bottom-left-radius : 20px;
-  border-bottom-right-radius : 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
   overflow: auto;
+
+  .deleteData {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: red;
+    position: sticky;
+    top:100%;
+  }
 }
-@keyframes test{
-  0%{
-    top : -100%;
+
+@keyframes test {
+  0% {
+    top: -100%;
   }
-  50%{
-    top : -50%;
+
+  50% {
+    top: -50%;
   }
-  100%{
-    top : 0%;
+
+  100% {
+    top: 0%;
   }
 }
+
 .history-screen.show {
   top: 0;
-  animation-name : test;
-  animation-duration : 1s;
+  animation-name: test;
+  animation-duration: 1s;
 }
+
 .history-screen.hiden {
   top: -100%;
 }
+
 .history-content {
-  width : 100%;
-  height : 100px;
-  .calculate{
+  width: 100%;
+  height: 100px;
+
+  .calculate {
     font-size: 29px;
     text-align: left;
     margin-left: 10px;
@@ -186,19 +232,18 @@ label img.moon {
     overflow: fixed;
     margin-top: 10px;
   }
-  .results{
+
+  .results {
     font-size: 24px;
     text-align: left;
     margin-left: 10px;
-    text-wrap : wrap;
+    text-wrap: wrap;
     overflow: fixed;
     margin-top: 20px;
   }
 }
 
 
-
-
-.hide{
+.hide {
   display: none;
 }
